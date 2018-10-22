@@ -119,10 +119,9 @@ end
 function FAIO_Lite.OnUpdate()
 	if not(FAIO_Lite.IsInGame()) then return end
 	if FAIO_Lite.LocalHero == nil or FAIO_Lite.LocalHero ~= Heroes.GetLocal() then FAIO_Lite.LocalHero = Heroes.GetLocal() return end
-	
-	local myHero = Heroes.GetLocal()
-	FAIO_Lite.myUnitName = NPC.GetUnitName(myHero)
-	FAIO_Lite_lastHitter.lastHitter(myHero)
+
+	FAIO_Lite.myUnitName = NPC.GetUnitName(FAIO_Lite.LocalHero)
+	FAIO_Lite_lastHitter.lastHitter(FAIO_Lite.LocalHero)
 
 end
 
@@ -137,6 +136,9 @@ function FAIO_Lite.OnUnitAnimation(animation)
 	if not(FAIO_Lite.IsInGame()) then return end
 	
 	FAIO_Lite_lastHitter.animationCapture(animation)
+	
+	if FAIO_Lite.LocalHero ~= animation.unit then return end
+	
 	FAIO_Lite_orbwalker.animationCapture(animation)
 	
 end
@@ -152,9 +154,8 @@ end
 function FAIO_Lite.OnDraw()
 	if not(FAIO_Lite.IsInGame()) then return end
 	if FAIO_Lite.LocalHero == nil or FAIO_Lite.LocalHero ~= Heroes.GetLocal() then FAIO_Lite.LocalHero = Heroes.GetLocal() return end
-	
-	local myHero = Heroes.GetLocal()
-	FAIO_Lite_lastHitter.lastHitterDrawing(myHero)
+
+	FAIO_Lite_lastHitter.lastHitterDrawing(FAIO_Lite.LocalHero)
 
 end
 
@@ -164,8 +165,7 @@ end
 
 function FAIO_Lite.targetChecker(genericEnemyEntity)
 
-	local myHero = Heroes.GetLocal()
-		if not myHero then return end
+		if not FAIO_Lite.LocalHero then return end
 
 	if genericEnemyEntity and not Entity.IsDormant(genericEnemyEntity) and not NPC.IsIllusion(genericEnemyEntity) and Entity.GetHealth(genericEnemyEntity) > 0 then
 

@@ -9,7 +9,6 @@ FAIO_Lite_orbwalker.orbwalkerRangedAnimationEndAlt = 0
 FAIO_Lite_orbwalker.orbwalkerAttackPoint = 0
 
 function FAIO_Lite_orbwalker.animationCapture(animation)
-
 	if animation.type == 1 then
 		FAIO_Lite_orbwalker.orbwalkerAnimationCaptureTime = os.clock()
 		FAIO_Lite_orbwalker.orbwalkerMeleeAnimationEnd = os.clock() + animation.castpoint
