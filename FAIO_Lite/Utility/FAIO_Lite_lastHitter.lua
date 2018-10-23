@@ -327,9 +327,6 @@ function FAIO_Lite_lastHitter.lastHitterExecuteLastHit(myHero)
 
 	if Menu.IsKeyDown(FAIO_Lite_options.optionLastHitKey) then
 
-		if FAIO_Lite_lastHitter.myUnitName == "npc_dota_hero_invoker" then
-			FAIO_Lite_lastHitter.invokerProcessInstances(myHero, Enum.UnitOrder.DOTA_UNIT_ORDER_ATTACK_TARGET)
-		end
 
 		local harassTarget = nil
 			if Menu.IsEnabled(FAIO_Lite_options.optionLastHitAutoModeEnemy) then
@@ -407,7 +404,7 @@ function FAIO_Lite_lastHitter.lastHitterExecuteLastHit(myHero)
 					else
 
 						if os.clock() > FAIO_Lite_lastHitter.lastHitterStopDelay then
-							if (curTime - hitTime) < (os.clock() - FAIO_Lite_orbwalker.orbwalkerAnimationCaptureTime) - 0.15 then
+							if (curTime - hitTime) < (os.clock() - FAIO_Lite_orbwalker.orbwalkerAnimationCaptureTime) then
 								Player.HoldPosition(Players.GetLocal(), myHero, false)
 								FAIO_Lite_lastHitter.lastHitterStopDelay = os.clock() + 0.05
 								return
