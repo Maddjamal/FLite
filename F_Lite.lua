@@ -187,13 +187,13 @@ end
 
 function FAIO_Lite.OnParticleCreate( particle, ... )
 	for k,v in pairs(particle) do
-		log(k,v)
+	--	log(k,v)
 	end
 end
 
 function FAIO_Lite.OnParticleDestroy( particle, ... )
 	for k,v in pairs(particle) do
-		log(k,v)
+	--	log(k,v)
 	end
 end
 
