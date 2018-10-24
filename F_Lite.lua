@@ -1,17 +1,4 @@
 local FAIO_Lite = {}
-_G.log = function( msg, ... )
-	if select(1, ... ) == nil then
-		return Log.Write(tostring(msg))
-	else
-		local message = tostring(msg)
-		local i = 1
-		repeat
-			message = message  .. ' | ' .. tostring(select(i, ...))
-			i = i + 1
-		until select(i + 1, ... ) == nil
-		Log.Write(message)
-	end
-end
 
 Log.Write("FAIO Lite version - loaded...")
 

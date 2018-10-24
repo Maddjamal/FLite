@@ -9,6 +9,7 @@ FAIO_Lite_ward.wardDrawingRemove = 0
 
 FAIO_Lite_ward.wardDispenserCount = {}
 FAIO_Lite_ward.wardProcessingTable = {}
+FAIO_Lite_ward.NeedPosUpdate = {}
 
 function FAIO_Lite_ward.OnEntityDestroy(ent)
 	if not Menu.IsEnabled(FAIO_Lite_options.optionWardAwareness) then return end
@@ -38,8 +39,13 @@ function FAIO_Lite_ward.wardProcessing(myHero)
 
 	if not myHero then return end
 
-	if os.clock() - FAIO_Lite_ward.wardCaptureTiming < 0.5 then return end
-
+	if os.clock() - FAIO_Lite_ward.wardCaptureTiming < 0.05 then return end
+	
+	for i = 1, #FAIO_Lite_ward.NeedPosUpdate do
+		FAIO_Lite_ward.wardProcessingTable[FAIO_Lite_ward.NeedPosUpdate[i]].pos = FAIO_Lite_ward.InFront(FAIO_Lite_ward.wardProcessingTable[FAIO_Lite_ward.NeedPosUpdate[i]].unit, 350)
+		FAIO_Lite_ward.NeedPosUpdate[i] = nil
+	end
+	
 	for i = 1, Heroes.Count() do
 		local heroes = Heroes.Get(i)
 		if heroes and Entity.IsHero(heroes) and Entity.IsAlive(heroes) and not Entity.IsDormant(heroes) and not Entity.IsSameTeam(myHero, heroes) and not NPC.IsIllusion(heroes) then
@@ -64,7 +70,10 @@ function FAIO_Lite_ward.wardProcessing(myHero)
 					FAIO_Lite_ward.wardCaptureTiming = os.clock()
 				else
 					if FAIO_Lite_ward.wardDispenserCount[ownerID]["sentry"] > sentryStack then
-						FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "sentry", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360)}
+						FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "sentry", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360), unit = heroes}
+							if NPC.IsTurning(heroes) then
+								table.insert(FAIO_Lite_ward.NeedPosUpdate, ownerID + math.floor(GameRules.GetGameTime()))
+							end
 							local mapPing = Particle.Create("particles/ui_mouseactions/ping_enemyward.vpcf", Enum.ParticleAttachment.PATTACH_WORLDORIGIN, heroes)
 							Particle.SetControlPoint(mapPing, 0, FAIO_Lite_ward.InFront(heroes, 350))
 							Particle.SetControlPoint(mapPing, 1, Vector(1,1,1))
@@ -73,7 +82,10 @@ function FAIO_Lite_ward.wardProcessing(myHero)
 						FAIO_Lite_ward.wardDispenserCount[ownerID] = nil
 						FAIO_Lite_ward.wardCaptureTiming = os.clock()
 					elseif FAIO_Lite_ward.wardDispenserCount[ownerID]["observer"] > sentryStack then
-						FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "observer", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360)}
+						FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "observer", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360), unit = heroes}
+							if NPC.IsTurning(heroes) then
+								table.insert(FAIO_Lite_ward.NeedPosUpdate, ownerID + math.floor(GameRules.GetGameTime()))
+							end
 							local mapPing = Particle.Create("particles/ui_mouseactions/ping_enemyward.vpcf", Enum.ParticleAttachment.PATTACH_WORLDORIGIN, heroes)
 							Particle.SetControlPoint(mapPing, 0, FAIO_Lite_ward.InFront(heroes, 350))
 							Particle.SetControlPoint(mapPing, 1, Vector(1,1,1))
@@ -98,7 +110,10 @@ function FAIO_Lite_ward.wardProcessing(myHero)
 					FAIO_Lite_ward.wardDispenserCount[ownerID] = {sentry = sentryStack, observer = observerStack}
 					FAIO_Lite_ward.wardCaptureTiming = os.clock()
 				elseif FAIO_Lite_ward.wardDispenserCount[ownerID]["sentry"] > sentryStack then
-					FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "sentry", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360)}
+					FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "sentry", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360), unit = heroes}
+						if NPC.IsTurning(heroes) then
+							table.insert(FAIO_Lite_ward.NeedPosUpdate, ownerID + math.floor(GameRules.GetGameTime()))
+						end
 						local mapPing = Particle.Create("particles/ui_mouseactions/ping_enemyward.vpcf", Enum.ParticleAttachment.PATTACH_WORLDORIGIN, heroes)
 						Particle.SetControlPoint(mapPing, 0, FAIO_Lite_ward.InFront(heroes, 350))
 						Particle.SetControlPoint(mapPing, 1, Vector(1,1,1))
@@ -107,7 +122,10 @@ function FAIO_Lite_ward.wardProcessing(myHero)
 					FAIO_Lite_ward.wardDispenserCount[ownerID] = {sentry = sentryStack, observer = observerStack}
 					FAIO_Lite_ward.wardCaptureTiming = os.clock()
 				elseif FAIO_Lite_ward.wardDispenserCount[ownerID]["observer"] > observerStack then
-					FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "observer", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360)}
+					FAIO_Lite_ward.wardProcessingTable[ownerID + math.floor(GameRules.GetGameTime())] = {type = "observer", pos = FAIO_Lite_ward.InFront(heroes, 350), dieTime = math.floor(GameRules.GetGameTime() + 360), unit = heroes}
+						if NPC.IsTurning(heroes) then
+							table.insert(FAIO_Lite_ward.NeedPosUpdate, ownerID + math.floor(GameRules.GetGameTime()))
+						end
 						local mapPing = Particle.Create("particles/ui_mouseactions/ping_enemyward.vpcf", Enum.ParticleAttachment.PATTACH_WORLDORIGIN, heroes)
 						Particle.SetControlPoint(mapPing, 0, FAIO_Lite_ward.InFront(heroes, 350))
 						Particle.SetControlPoint(mapPing, 1, Vector(1,1,1))
