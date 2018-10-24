@@ -404,7 +404,7 @@ function FAIO_Lite_lastHitter.lastHitterExecuteLastHit(myHero)
 					else
 
 						if os.clock() > FAIO_Lite_lastHitter.lastHitterStopDelay then
-							if (curTime - hitTime) < (os.clock() - FAIO_Lite_orbwalker.orbwalkerAnimationCaptureTime) then
+							if (curTime - hitTime) < (os.clock() - FAIO_Lite_orbwalker.orbwalkerAnimationCaptureTime) - 0.15 then
 								Player.HoldPosition(Players.GetLocal(), myHero, false)
 								FAIO_Lite_lastHitter.lastHitterStopDelay = os.clock() + 0.05
 								return
