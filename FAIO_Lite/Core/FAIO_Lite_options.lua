@@ -16,6 +16,7 @@ OverallPath[6] = { "Foo0oo", "Модули", "Last hitter", "Использов�
 OverallPath[7] = { "Foo0oo", "Модули","Orbwalker" }
 OverallPath[8] = { "Foo0oo", "Модули","Orbwalker", "Опция (Orbwalk to enemy)" }
 OverallPath[9] = { "Foo0oo", "Модули","Orbwalker", "Опция (Orbwalk to mouse options)" }
+OverallPath[10] = { "Foo0oo", "Модули","VisionControl"}
 
 -- Module LastHit
 FAIO_Lite_options.optionLastHitEnable = Menu.AddOptionBool(OverallPath[3], "0. Включить", false)
@@ -34,5 +35,9 @@ FAIO_Lite_options.optionLastHitAutoModeEnemySave = Menu.AddOptionBool(OverallPat
 FAIO_Lite_options.optionLastHitOrb = Menu.AddOptionBool(OverallPath[6], "1. Включить использование orb атак", false)
 FAIO_Lite_options.optionLastHitOrbMana = Menu.AddOptionSlider(OverallPath[6], "2. Порог маны",  5, 75, 5)
 
+--Module VisionControl
+FAIO_Lite_options.optionWardAwareness = Menu.AddOptionBool(OverallPath[10], "1. Рисовать индикатор для вражеских вардов", false)
+FAIO_Lite_options.optionWardAwarenessRemove = Menu.AddOptionBool(OverallPath[10], "2. Автоматически удалять индикатор", false)
+FAIO_Lite_options.optionWardAwarenessClickRemove = Menu.AddOptionBool(OverallPath[10], "3. Удалять индикатор вручную", false)
 
 return FAIO_Lite_options
