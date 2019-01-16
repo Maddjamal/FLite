@@ -8,36 +8,36 @@ local FAIO_Lite_data = require("scripts/FAIO_Lite/Core/FAIO_Lite_data")
 local OverallPath = {}
 
 OverallPath[1] = { "Foo0oo" }
-OverallPath[2] = { "Foo0oo", "Модули" }
-OverallPath[3] = { "Foo0oo", "Модули", "Last hitter" }
-OverallPath[4] = { "Foo0oo", "Модули", "Last hitter", "Отрисовка" }
-OverallPath[5] = { "Foo0oo", "Модули", "Last hitter", "Опции Auto LashHit" }
-OverallPath[6] = { "Foo0oo", "Модули", "Last hitter", "Использование orb атак" }
-OverallPath[7] = { "Foo0oo", "Модули","Orbwalker" }
-OverallPath[8] = { "Foo0oo", "Модули","Orbwalker", "Опция (Orbwalk to enemy)" }
-OverallPath[9] = { "Foo0oo", "Модули","Orbwalker", "Опция (Orbwalk to mouse options)" }
-OverallPath[10] = { "Foo0oo", "Модули","VisionControl"}
+OverallPath[2] = { "Foo0oo"}
+OverallPath[3] = { "Foo0oo", "Last hitter" }
+OverallPath[4] = { "Foo0oo", "Last hitter", "Drawings" }
+OverallPath[5] = { "Foo0oo", "Last hitter", "Auto LastHit Options" }
+OverallPath[6] = { "Foo0oo", "Last hitter", "Orb Attack Usage" }
+OverallPath[7] = { "Foo0oo", "Orbwalker" }
+OverallPath[8] = { "Foo0oo", "Orbwalker", "Опция (Orbwalk to enemy)" }
+OverallPath[9] = { "Foo0oo", "Orbwalker", "Опция (Orbwalk to mouse options)" }
+OverallPath[10] = { "Foo0oo", "VisionControl"}
 
 -- Module LastHit
-FAIO_Lite_options.optionLastHitEnable = Menu.AddOptionBool(OverallPath[3], "0. Включить", false)
-FAIO_Lite_options.optionLastHitKey = Menu.AddKeyOption(OverallPath[3], "1.Кнопка для активации", Enum.ButtonCode.KEY_NONE)
-FAIO_Lite_options.optionLastHitStyle = Menu.AddOptionCombo(OverallPath[3], "2. Опции добивания", {'LashHit & Deny', 'Только LashHit', 'Только Deny'}, 1)
-FAIO_Lite_options.optionLastHitOffset = Menu.AddOptionCombo(OverallPath[3], "3.1 Смещение по времени", {'0.00s', '0.05s', '0.10s', '0.15s', '0.20s', '0.25s'}, 1)
-FAIO_Lite_options.optionLastHitPredict = Menu.AddOptionBool(OverallPath[3], "3.2 Использовать средний урон для предсказания", false)
-FAIO_Lite_options.optionLastHitDrawCreepEnable = Menu.AddOptionBool(OverallPath[4], "1. Включить отрисовку", false)
-FAIO_Lite_options.optionLastHitDrawRange = Menu.AddOptionBool(OverallPath[4], "0. Рисовать радиус дальности атаки", false)
-FAIO_Lite_options.optionLastHitDrawStyle = Menu.AddOptionCombo(OverallPath[4], "1. Тип индикации",{'Союзные и вражеские крипы', 'Только вражеские крипы'}, 1)
-FAIO_Lite_options.optionLastHitDrawCreepTimer = Menu.AddOptionBool(OverallPath[4], "2. Рисовать индикатор LashHit", false)
-FAIO_Lite_options.optionLastHitAutoModeMove = Menu.AddOptionBool(OverallPath[5], "1. Двигаться к курсосу", false)
-FAIO_Lite_options.optionLastHitAutoModeMoveRange = Menu.AddOptionSlider(OverallPath[5], "2. Минимальная дистанция для перемещения",  10, 400, 10)
-FAIO_Lite_options.optionLastHitAutoModeEnemy = Menu.AddOptionBool(OverallPath[5], "3. Изматывать противника", false)
-FAIO_Lite_options.optionLastHitAutoModeEnemySave = Menu.AddOptionBool(OverallPath[5], "4. Безопасно изматывать противника", false)
-FAIO_Lite_options.optionLastHitOrb = Menu.AddOptionBool(OverallPath[6], "1. Включить использование orb атак", false)
-FAIO_Lite_options.optionLastHitOrbMana = Menu.AddOptionSlider(OverallPath[6], "2. Порог маны",  5, 75, 5)
+FAIO_Lite_options.optionLastHitEnable = Menu.AddOptionBool(OverallPath[3], "0. Enable", false)
+FAIO_Lite_options.optionLastHitKey = Menu.AddKeyOption(OverallPath[3], "1. LastHit Key", Enum.ButtonCode.KEY_NONE)
+FAIO_Lite_options.optionLastHitStyle = Menu.AddOptionCombo(OverallPath[3], "2. LastHit Mode", {'LashHit & Deny', 'Only LashHit', 'Only Deny'}, 1)
+FAIO_Lite_options.optionLastHitOffset = Menu.AddOptionCombo(OverallPath[3], "3.1 Time Offset", {'0.00s', '0.05s', '0.10s', '0.15s', '0.20s', '0.25s'}, 1)
+FAIO_Lite_options.optionLastHitPredict = Menu.AddOptionBool(OverallPath[3], "3.2 Use Avg Dmg", false)
+FAIO_Lite_options.optionLastHitDrawCreepEnable = Menu.AddOptionBool(OverallPath[4], "1. Enable", false)
+FAIO_Lite_options.optionLastHitDrawRange = Menu.AddOptionBool(OverallPath[4], "0. Draw Attack Radius", false)
+FAIO_Lite_options.optionLastHitDrawStyle = Menu.AddOptionCombo(OverallPath[4], "1. Indication Type", {'Ally and Enemy Creeps', 'Enemy only'}, 1)
+FAIO_Lite_options.optionLastHitDrawCreepTimer = Menu.AddOptionBool(OverallPath[4], "2. Draw Lasthit Indicator", false)
+FAIO_Lite_options.optionLastHitAutoModeMove = Menu.AddOptionBool(OverallPath[5], "1. Auto LastHit Options", false)
+FAIO_Lite_options.optionLastHitAutoModeMoveRange = Menu.AddOptionSlider(OverallPath[5], "2. Min Distance to Move",  1, 400, 10)
+FAIO_Lite_options.optionLastHitAutoModeEnemy = Menu.AddOptionBool(OverallPath[5], "3. Harass Enemy", false)
+FAIO_Lite_options.optionLastHitAutoModeEnemySave = Menu.AddOptionBool(OverallPath[5], "4. Safe Harass", false)
+FAIO_Lite_options.optionLastHitOrb = Menu.AddOptionBool(OverallPath[6], "1. Enable", false)
+FAIO_Lite_options.optionLastHitOrbMana = Menu.AddOptionSlider(OverallPath[6], "2. Mana Threshold",  5, 75, 5)
 
 --Module VisionControl
-FAIO_Lite_options.optionWardAwareness = Menu.AddOptionBool(OverallPath[10], "1. Рисовать индикатор для вражеских вардов", false)
-FAIO_Lite_options.optionWardAwarenessRemove = Menu.AddOptionBool(OverallPath[10], "2. Автоматически удалять индикатор", false)
-FAIO_Lite_options.optionWardAwarenessClickRemove = Menu.AddOptionBool(OverallPath[10], "3. Удалять индикатор вручную", false)
+FAIO_Lite_options.optionWardAwareness = Menu.AddOptionBool(OverallPath[10], "1. Draw Indicator for Enemy Wards", false)
+FAIO_Lite_options.optionWardAwarenessRemove = Menu.AddOptionBool(OverallPath[10], "2. Automatically Remove Indicator", false)
+FAIO_Lite_options.optionWardAwarenessClickRemove = Menu.AddOptionBool(OverallPath[10], "3. Manually Remove Indicator", false)
 
 return FAIO_Lite_options

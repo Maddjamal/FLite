@@ -142,6 +142,7 @@ function FAIO_Lite_lastHitter.OnProjectile(projectile)
 								creepDMG = math.ceil(((NPC.GetTrueMaximumDamage(projectile.source) + NPC.GetTrueDamage(projectile.source)) / 2) * 2.5 * NPC.GetArmorDamageMultiplier(targetCreep))
 							end
 						end
+						
 					local hitTime = FAIO_Lite_utility_functions.utilityRoundNumber((GameRules.GetGameTime() + travelTime - 0.035), 3)
 					local sourceIndex = Entity.GetIndex(projectile.source)
 					if FAIO_Lite_lastHitter.lastHitCreepHPPrediction[targetCreep] == nil then
