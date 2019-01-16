@@ -669,15 +669,15 @@ function FAIO_Lite_lastHitter.initLastHit(myHero)
 
 	local increasedAS = NPC.GetIncreasedAttackSpeed(myHero)
 
-	if FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][1] == nil then return end
+	if FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].AttackAnimationPoint == nil then return end
 
-	if FAIO_Lite_lastHitter.myAttackPoint ~= FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][1] / (1 + (increasedAS/100)) then
-		FAIO_Lite_lastHitter.myAttackPoint = FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][1] / (1 + (increasedAS/100))
+	if FAIO_Lite_lastHitter.myAttackPoint ~= (FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].AttackAnimationPoint) / (1 + (increasedAS/100)) then
+		FAIO_Lite_lastHitter.myAttackPoint = (FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].AttackAnimationPoint) / (1 + (increasedAS/100))
 	end
 
-	if NPC.IsRanged(myHero) and FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][3] ~= nil and FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][3] > 0 then
-		if FAIO_Lite_lastHitter.myProjectileSpeed ~= FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][3] then
-			FAIO_Lite_lastHitter.myProjectileSpeed = FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)][3]
+	if NPC.IsRanged(myHero) and FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].ProjectileSpeed ~= nil and (FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].ProjectileSpeed) > 0 then
+		if FAIO_Lite_lastHitter.myProjectileSpeed ~= (FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].ProjectileSpeed) then
+			FAIO_Lite_lastHitter.myProjectileSpeed = (FAIO_Lite_data.attackPointTable[NPC.GetUnitName(myHero)].ProjectileSpeed)
 		end
 	end	
 

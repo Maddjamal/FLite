@@ -38,7 +38,10 @@ FAIO_Lite.resetModules()
 function FAIO_Lite.requireBasicInit()
 
 	FAIO_Lite.system = require("scripts/FAIO_Lite/Core/FAIO_Lite_system")
+	
 	FAIO_Lite_data = require("scripts/FAIO_Lite/Core/FAIO_Lite_data")
+	FAIO_Lite_data.InitAttackPointTable()
+
 	FAIO_Lite_options = require("scripts/FAIO_Lite/Core/FAIO_Lite_options")
 		setmetatable(FAIO_Lite_options, {__index = FAIO_Lite})
 
