@@ -7,16 +7,16 @@ local FAIO_Lite_data = require("scripts/FAIO_Lite/Core/FAIO_Lite_data")
 
 local OverallPath = {}
 
-OverallPath[1] = { "Foo0oo" }
-OverallPath[2] = { "Foo0oo"}
-OverallPath[3] = { "Foo0oo", "Last hitter" }
-OverallPath[4] = { "Foo0oo", "Last hitter", "Drawings" }
-OverallPath[5] = { "Foo0oo", "Last hitter", "Auto LastHit Options" }
-OverallPath[6] = { "Foo0oo", "Last hitter", "Orb Attack Usage" }
-OverallPath[7] = { "Foo0oo", "Orbwalker" }
-OverallPath[8] = { "Foo0oo", "Orbwalker", "Опция (Orbwalk to enemy)" }
-OverallPath[9] = { "Foo0oo", "Orbwalker", "Опция (Orbwalk to mouse options)" }
-OverallPath[10] = { "Foo0oo", "VisionControl"}
+OverallPath[1] = { "FLite" }
+OverallPath[2] = { "FLite"}
+OverallPath[3] = { "FLite", "Last hitter" }
+OverallPath[4] = { "FLite", "Last hitter", "Drawings" }
+OverallPath[5] = { "FLite", "Last hitter", "Auto LastHit Options" }
+OverallPath[6] = { "FLite", "Last hitter", "Orb Attack Usage" }
+OverallPath[7] = { "FLite", "Orbwalker" }
+OverallPath[8] = { "FLite", "Orbwalker", "Опция (Orbwalk to enemy)" }
+OverallPath[9] = { "FLite", "Orbwalker", "Опция (Orbwalk to mouse options)" }
+OverallPath[10] = { "FLite", "VisionControl"}
 
 -- Module LastHit
 FAIO_Lite_options.optionLastHitEnable = Menu.AddOptionBool(OverallPath[3], "0. Enable", false)

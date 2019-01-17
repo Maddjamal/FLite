@@ -1,5 +1,7 @@
 FAIO_Lite_data = {}
 
+require "scripts.FAIO_Lite.Core.FAIO_ForceData"
+
 FAIO_Lite_data.orbAttackTable = {
 	npc_dota_hero_clinkz = "clinkz_searing_arrows",
 	npc_dota_hero_drow_ranger = "drow_ranger_frost_arrows",
