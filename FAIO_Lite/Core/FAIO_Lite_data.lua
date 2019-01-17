@@ -11,6 +11,7 @@ FAIO_Lite_data.orbAttackTable = {
 }
 
 
+
 FAIO_Lite_data.InitAttackPointTable = function ()
 
 	FAIO_Lite_data.attackPointTable = {}

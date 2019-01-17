@@ -40,7 +40,7 @@ function FAIO_Lite.requireBasicInit()
 	FAIO_Lite.system = require("scripts/FAIO_Lite/Core/FAIO_Lite_system")
 	
 	FAIO_Lite_data = require("scripts/FAIO_Lite/Core/FAIO_Lite_data")
-	FAIO_Lite_data.InitAttackPointTable()
+	
 
 	FAIO_Lite_options = require("scripts/FAIO_Lite/Core/FAIO_Lite_options")
 		setmetatable(FAIO_Lite_options, {__index = FAIO_Lite})
@@ -114,7 +114,6 @@ function FAIO_Lite.OnGameEnd()
 end
 
 function FAIO_Lite.OnScriptLoad()
-
 	--FAIO_Lite.resetModules()
 
 end
@@ -122,6 +121,10 @@ end
 function FAIO_Lite.OnUpdate()
 	if not(FAIO_Lite.IsInGame()) then return end
 	if FAIO_Lite.LocalHero == nil or FAIO_Lite.LocalHero ~= Heroes.GetLocal() then FAIO_Lite.LocalHero = Heroes.GetLocal() return end
+
+	if FAIO_Lite_data.attackPointTable == nil and _G.Data ~= nil and _G.Data["npc_heroes"] ~= nil then
+		FAIO_Lite_data.InitAttackPointTable()
+	end
 
 	if Menu.IsEnabled(FAIO_Lite_options.optionWardAwareness) then
 		FAIO_Lite_ward.wardProcessing(FAIO_Lite.LocalHero)
