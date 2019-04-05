@@ -176,6 +176,7 @@ function FAIO_Lite_ward.drawWard(myHero)
 			local dieTime = v.dieTime
 			if dieTime > GameRules.GetGameTime() then
 				local x, y, visible = Renderer.WorldToScreen(pos)
+				visible = (x > 0 and y > 0) and true or false
 				local hoveringOver = Input.IsCursorInRect(x - 15, y - 15, 30, 30)
 				if visible then
 					if type == "sentry" then

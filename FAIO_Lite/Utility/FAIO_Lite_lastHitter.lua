@@ -783,7 +783,7 @@ function FAIO_Lite_lastHitter.lastHitterDrawing(myHero)
 
 	if not myHero then return end
 	if not Menu.IsEnabled(FAIO_Lite_options.optionLastHitDrawCreepEnable) then return end
-	
+
 	if FAIO_Lite_lastHitter.lastHitCreepHPPredictionTime == nil or next(FAIO_Lite_lastHitter.lastHitCreepHPPredictionTime) == nil then return end
 
 	if Menu.IsEnabled(FAIO_Lite_options.optionLastHitDrawCreepTimer) then
@@ -792,6 +792,7 @@ function FAIO_Lite_lastHitter.lastHitterDrawing(myHero)
 				imageHandle = Renderer.LoadImage("panorama/images/icon_star_png.vtex_c")
 				FAIO_Lite_lastHitter.lastHitterKillableImage = imageHandle
 			end
+			
 		for i, v in pairs(FAIO_Lite_lastHitter.lastHitCreepHPPredictionTime) do
 			local target = i
 			local dieTime = v
@@ -800,6 +801,8 @@ function FAIO_Lite_lastHitter.lastHitterDrawing(myHero)
 				local posY = NPC.GetHealthBarOffset(target)
 					pos:SetZ(pos:GetZ() + posY)	
 				local x, y, visible = Renderer.WorldToScreen(pos)
+				visible = (x > 0 and y > 0) and true or false
+				
 				if Menu.GetValue(FAIO_Lite_options.optionLastHitDrawStyle) < 1 then
 					if visible then
 						if dieTime - GameRules.GetGameTime() > FAIO_Lite_lastHitter.lastHitterTimingOffsetter(myHero, target) then
